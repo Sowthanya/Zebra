@@ -1,0 +1,57 @@
+package app.testautomation.UI;
+
+import org.testng.annotations.Test;
+
+import app.testautomation.Core.BaseClass;
+import app.testautomation.UIPageClass.AddItemsPage;
+
+import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+
+public class Add_Verify_MyBasketItems extends BaseClass {
+	
+  WebDriver driver;
+  
+  @BeforeTest
+  public void beforeTest() {
+	  driver= getDriver();
+	  
+  }
+	
+  @Test
+  public void addVerifyItemsInBasket() {
+	  
+	 
+	  AddItemsPage addItem = new  AddItemsPage(driver);
+	  
+	  boolean blnFlag;
+	 
+	  //Step1 : Launching the application
+	  blnFlag = launchAppURL(driver, "https://www.bigbasket.com/");
+	  if(!blnFlag)
+	  {
+		  Assert.fail("Application Lauch Failed");
+	  }
+	  
+	  //Step 2 : Search an Item
+	  blnFlag = addItem.sea;
+	  if(!blnFlag)
+	  {
+		  Assert.fail("Application Lauch Failed");
+	  }
+	  
+	  //Step 3 : Add an Item to teh Basket
+	  
+	  //Step 4 : verify the item is added correctly in the Basket
+  }
+  
+
+  @AfterTest
+  public void afterTest() {
+	  
+	  closeDriver(driver);
+  }
+
+}

@@ -1,0 +1,11 @@
+package app.testautomation.API;
+
+public class Corona_Appointment_Availablitiy {
+
+	public static void main(String[] args, Object RestAssured) {
+		
+		RestAssured.baseURI = "https://demoqa.com/utilities/weather/city";
+
+	}
+
+}

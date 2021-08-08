@@ -1,0 +1,9 @@
+package app.testautomation.API;
+
+import org.testng.annotations.Test;
+
+public class CoronaVaccineAvailabilityCheck {
+  @Test
+  public void f() {
+  }
+}

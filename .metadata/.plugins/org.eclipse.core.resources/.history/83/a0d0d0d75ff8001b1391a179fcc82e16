@@ -1,0 +1,5 @@
+package app.testautomation.UIPageClass;
+
+public class AddItemsPage {
+
+}

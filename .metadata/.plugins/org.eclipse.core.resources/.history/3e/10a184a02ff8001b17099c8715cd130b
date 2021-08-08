@@ -1,0 +1,40 @@
+package app.testautomation.API;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class Corona_Appointment_Availablitiy {
+
+	public static void main(String[] args) {
+		
+		RestAssured.baseURI = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin";
+		RequestSpecification request = RestAssured.given();
+          
+		Response response = request.queryParam("pincode", "560100")
+									.queryParam("date", "10-08-2021")
+									.get();
+		
+		String responseBody = response.getBody().asString();
+		
+		System.out.println("Response Body is =>  " + responseBody);
+
+		 JSONArray jsonArray = new JSONArray(responseBody);
+
+		    for (int i = 0; i < jsonArray.length(); i++) {
+
+		        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+		        String userName = jsonObject.getString("name");
+		        String userEmail = jsonObject.getString("email");
+
+		        Log.i("TAG Name " + i, " : " + userName);
+		        Log.i("TAG Mail " + i, " : " + userEmail);
+		
+		
+	}
+
+}

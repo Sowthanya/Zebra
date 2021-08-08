@@ -1,0 +1,30 @@
+package app.testautomation.API;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class Bigbasket_Verify_MyBasket {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "./browserdrivers/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.bigbasket.com/");
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		driver.findElement(By.xpath("//*[@qa='searchBar']")).sendKeys("Rice");
+		
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//input[@qa='qtyAS']")).clear();
+		
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//input[@qa='qtyAS']")).sendKeys("3");
+
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//button[@qa='addBtnAS']")).click();
+		
+		driver.quit();
+	}
+
+}

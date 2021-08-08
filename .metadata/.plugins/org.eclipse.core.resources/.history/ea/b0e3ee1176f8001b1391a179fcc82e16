@@ -1,0 +1,42 @@
+package app.testautomation.APIUtility;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
+public class APIUtil {
+	
+	public String getRequestCoronaVaccine()
+	{
+		RestAssured.baseURI = baseURI;
+		RequestSpecification request = RestAssured.given();
+          
+		Response response = request.queryParam("pincode", pinCode)
+									.queryParam("date", date)
+									.get();
+		
+		String responseBody = response.getBody().asString();
+		return responseBody;
+
+	}
+	
+	public void convertJsonResponse(String responseBody)
+	{
+		JSONArray jsonArray = new JSONArray(responseBody.replace("{\"sessions\":", "").replace("}]}", "}]"));
+
+	    for (int i = 0; i < jsonArray.length(); i++) {
+
+	        JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+	        String medicalCenterName = jsonObject.getString("name");
+	        String area = jsonObject.getString("block_name");
+	        
+	        System.out.println(i+1 + " : " + medicalCenterName + " ," + "WardName: " + area);
+	    
+	    }
+	}
+
+}

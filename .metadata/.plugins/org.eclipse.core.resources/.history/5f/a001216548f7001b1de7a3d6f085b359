@@ -1,0 +1,22 @@
+package app.testautomation.API;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Bigbasket_Verify_MyBasket {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "./browserdrivers/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.bigbasket.com/");
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+  driver.close();
+	}
+
+}

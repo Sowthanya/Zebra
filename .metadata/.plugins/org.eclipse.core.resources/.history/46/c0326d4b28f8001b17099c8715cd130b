@@ -1,0 +1,68 @@
+package app.testautomation.API;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.*;
+
+public class Bigbasket_Verify_MyBasket {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "./browserdrivers/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.bigbasket.com/");
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		driver.findElement(By.xpath("//*[@qa='searchBar']")).sendKeys("Rice");	
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("search-item-suggesion")));
+	
+		
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//input[@qa='qtyAS']")).clear();
+		
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//input[@qa='qtyAS']")).sendKeys("3");
+
+		driver.findElement(By.xpath("//div[@qa='pcsAS' and text()='5 kg']//preceding-sibling::div//p[@qa='brandAS' and text()='BB Royal']//following-sibling::p[contains(text(),'Raw, Sona Masoori')]/../..//following-sibling::div//button[@qa='addBtnAS']")).click();
+		
+		WebElement myBasket = driver.findElement(By.xpath("//*[@qa='myBasket']"));
+		
+		//Creating object of an Actions class
+		Actions action = new Actions(driver);
+			
+
+		//Performing the mouse hover action on the target element.
+		action.moveToElement(myBasket).perform();
+		
+		WebDriverWait wait = new WebDriverWait(driver,30);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@qa='prodNameMB']")));
+		
+		String myBasketItem = driver.findElement(By.xpath("//*[@qa='prodNameMB']")).getText().trim();
+		
+		if(myBasketItem.contains("BB Royal Rice - Raw, Sona Masoori 5 kg"))
+		{
+			System.out.println("The Ordered item is displayed correctly in the basket");
+		}
+		else
+		{
+			System.out.println("Failed:" + myBasketItem);
+		}
+		
+		driver.quit();
+	}
+
+}

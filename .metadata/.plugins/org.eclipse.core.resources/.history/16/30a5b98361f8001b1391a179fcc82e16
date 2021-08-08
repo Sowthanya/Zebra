@@ -1,0 +1,27 @@
+package app.testautomation.UIPageClass;
+
+import org.openqa.selenium.WebDriver;
+
+public class AddItemsPage {
+	
+	WebDriver driver;
+	AddItemsPage(WebDriver driver)
+	{
+		this.driver = driver;
+	}
+	public void searchItem()
+	{
+		
+	}
+	
+	public void addItem()
+	{
+		
+	}
+	
+	public void verifyItem()
+	{
+		
+	}
+
+}

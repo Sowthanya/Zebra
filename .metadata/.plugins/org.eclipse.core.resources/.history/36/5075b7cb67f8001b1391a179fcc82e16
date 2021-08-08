@@ -1,0 +1,44 @@
+package app.testautomation.UI;
+
+import org.testng.annotations.Test;
+
+import app.testautomation.Core.BaseClass;
+
+import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+
+public class Add_Verify_MyBasketItems extends BaseClass {
+	
+  WebDriver driver;
+  
+  @BeforeTest
+  public void beforeTest() {
+	  driver= getDriver();
+  }
+	
+  @Test
+  public void addVerifyItemsInBasket() {
+	  
+	  boolean blnFlag;
+	 
+	  //Launching the application
+	  blnFlag = launchAppURL(driver, "https://www.bigbasket.com/");
+	  if(!blnFlag)
+	  {
+		  Assert.fail("");
+	  }
+	  
+	 
+	  
+  }
+  
+
+  @AfterTest
+  public void afterTest() {
+	  
+	  closeDriver(driver);
+  }
+
+}

@@ -1,0 +1,21 @@
+package app.testautomation.UIPageClass;
+
+public class AddItemsPage {
+	
+	
+	public void searchItem()
+	{
+		
+	}
+	
+	public void addItem()
+	{
+		
+	}
+	
+	public void verifyItem()
+	{
+		
+	}
+
+}

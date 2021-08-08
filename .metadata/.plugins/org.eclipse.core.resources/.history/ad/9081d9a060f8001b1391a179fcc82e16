@@ -1,0 +1,30 @@
+package app.testautomation.Core;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class BaseClass {
+	
+	public WebDriver driver;
+	
+	public WebDriver getDriver()
+	{
+		try
+		{
+		System.setProperty("webdriver.chrome.driver", "./browserdrivers/chromedriver.exe");
+	    driver = new ChromeDriver();		
+		return driver;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public boolean launchAppURL(String url)
+	{
+		return false;
+		
+	}
+
+}
